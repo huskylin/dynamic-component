@@ -151,6 +151,16 @@ export class PieChartComponent implements OnInit, OnChanges {
     };
   }
   ngOnInit() {
+    this.data = {
+      legend: ['邪惡勢力', '還是邪惡勢力'],
+      data: [333, 666]
+    };
+    let total = 0;
+    this.data.data.forEach(value => { total += value });
+    const legend = this.data.legend;
+    const data = this.data.data;
+    const seriesList = this.getSeriesList(data, legend);
+    this.drawChart(legend, total, seriesList);
   }
   ngOnChanges(changes: any): void {
     if (changes.data && changes.data.currentValue) {

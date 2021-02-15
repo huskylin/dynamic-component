@@ -44,8 +44,10 @@ export class BarChartComponent implements OnInit, OnChanges {
       },
     },
     grid: {
-      top: '5%',
-      left: '5%',
+      top: '3%',
+      bottom: '20%',
+      left: '1%',
+      right: '1%',
     },
     xAxis: [{
       type: this.data.xType,
@@ -171,6 +173,13 @@ export class BarChartComponent implements OnInit, OnChanges {
     this.barChartUpdates = { ...this.barChartUpdates };
   }
   ngOnInit() {
+    this.data = {
+      xType: 'category',
+      yType: 'value',
+      xAxis: [9, 10, 8, 5, 6, 6],
+      yAxis: [6, 7, 3, 9, 6, 4],
+    }
+    this.drawChart(this.data);
   }
   ngOnChanges(changes: any): void {
     if (changes.data && changes.data.currentValue) {

@@ -48,7 +48,10 @@ export class LineChartComponent implements OnInit, OnChanges {
       },
     },
     grid: {
-      top: '8%',
+      top: '3%',
+      bottom: '20%',
+      left: '1%',
+      right: '1%',
     },
     xAxis: [{
       type: 'category',
@@ -178,8 +181,10 @@ export class LineChartComponent implements OnInit, OnChanges {
         },
       },
       grid: {
-        top: '5%',
-        left: '5%',
+        top: '3%',
+        bottom: '20%',
+        left: '1%',
+        right: '1%',
       },
       xAxis: [{
         type: 'category',
@@ -232,8 +237,16 @@ export class LineChartComponent implements OnInit, OnChanges {
     };
   }
   ngOnInit() {
+    this.data = {
+      xAxis: Array.from([...Array(24).keys()]),
+      lines: [
+        { 'name': '使用率', 'values': [9, 10, 8, 5, 6, 6, 4, 9, 2, 3, 2, 3, 2, 3, 8, 9, 2, 3, 2, 3, 2, 3, 8, 14] }
+      ],
+    }
+    this.drawChart(this.data);
   }
   ngOnChanges(changes: any): void {
+    console.log(changes);
     if (changes.data && changes.data.currentValue) {
       this.data = changes.data.currentValue;
       this.drawChart(this.data);
