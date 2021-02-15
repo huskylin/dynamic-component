@@ -1,0 +1,20 @@
+<div class="setting">
+  <nb-toggle status="primary" labelPosition="start" checked="true" (checkedChange)="toggleEditMode($event)">
+  </nb-toggle>
+</div>
+<div class="row w-100 small-block">
+  <ng-container appDynamicComponentHost>
+  </ng-container>
+  <ngx-add-button *ngIf="editable" class="col-md-3 small-height" [size]="'small'" [haveOption]="false"
+    (click)="addComponent()">
+  </ngx-add-button>
+</div>
+<hr />
+<!-- 右側選單選擇元件 -->
+<nb-sidebar tag="selector" class="sidebar rightSidebar" end state="collapsed">
+  <a class="toggleBtn" href="javascript: void(0)" (click)="sidebarToggle()">
+    <nb-icon icon="chevron-right-outline" [ngClass]="{'rotate': !sideState}"></nb-icon>
+  </a>
+  <app-component-selector (choosed)="createComponent($event, true)">
+  </app-component-selector>
+</nb-sidebar>

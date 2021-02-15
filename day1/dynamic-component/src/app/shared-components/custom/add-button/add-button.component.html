@@ -1,0 +1,9 @@
+<div class="wrapper" [ngClass]="size">
+  <div tabindex="-1" class="block center">
+    <nb-icon icon="plus-outline" class="font-size"></nb-icon>
+    <div class="multi-button" *ngIf="haveOption">
+      <button (click)="choosedSize('big')">大</button>
+      <button (click)="choosedSize('medium')">中</button>
+    </div>
+  </div>
+</div>

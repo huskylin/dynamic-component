@@ -32,7 +32,6 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
               "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [

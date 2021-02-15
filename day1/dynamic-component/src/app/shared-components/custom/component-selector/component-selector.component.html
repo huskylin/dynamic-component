@@ -1,0 +1,32 @@
+<nb-card class="card-list">
+  <nb-card-body class="hide-scrollbar">
+    <nb-tabset fullWidth>
+      <nb-tab tabTitle="第一頁的模組">
+        <div class="row justify-content-center">
+          <nb-card *ngFor="let item of page1Components" class="col-md-12 my-4">
+            <nb-card-header>{{item.name}}
+              <nb-icon icon="plus-outline" class="right" (click)="chooseComponent(item)"></nb-icon>
+            </nb-card-header>
+            <nb-card-body class="card-content">
+              {{item.description}}
+              <img class="preview" [src]="item.img" alt="">
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle="第二頁的模組">
+        <div class="row justify-content-center">
+          <nb-card *ngFor="let item of page2Components" class="col-md-12 my-4">
+            <nb-card-header>{{item.name}}
+              <nb-icon icon="plus-outline" class="right" (click)="chooseComponent(item)"></nb-icon>
+            </nb-card-header>
+            <nb-card-body class="card-content">
+              {{item.description}}
+              <img class="preview" [src]="item.img" alt="">
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

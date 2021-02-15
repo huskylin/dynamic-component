@@ -1,0 +1,31 @@
+.right {
+  position: absolute !important;
+  right: 0;
+  top: 0;
+  margin: 15px;
+  transition: 0.3s all ease-in-out;
+  &:hover {
+    color: rgba(74, 208, 225, 1);
+    font-size: 1.5rem;
+    scale: 1.4;
+  }
+}
+.preview {
+  width: 100%;
+  padding: 1rem;
+}
+.card-content {
+  height: 300px;
+}
+.card-list {
+  height: 100vh;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
