@@ -1,5 +1,5 @@
 import { UtilsService } from './../../services/utils.service';
-import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
 import { CustomService } from 'src/app/services/custom.service';
 import { DynamicComponentHostDirective } from './dynamic-component-host.directive';
@@ -14,7 +14,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
   @ViewChildren(DynamicComponentHostDirective) dcHosts: QueryList<DynamicComponentHostDirective>;
   constructor(
     private cfr: ComponentFactoryResolver,
-    private vcRef: ViewContainerRef,
     private sidebarService: NbSidebarService,
     private renderer2: Renderer2,
     private customService: CustomService,
@@ -53,11 +52,10 @@ export class CustomComponent implements OnInit, AfterViewInit {
       const wrapperFactory = this.cfr.resolveComponentFactory(wrapperComponent);
       const componentFactory = this.cfr.resolveComponentFactory(targetComponent);
       // 先產生目標圖表元件
-      const targetRef = this.vcRef.createComponent(componentFactory);
+      const targetRef = vcRef.createComponent(componentFactory);
       // 在參照位置產生外框元件，並且透過 ng-content，將目標圖表元件放進來
       const wrapperRef = vcRef.createComponent(wrapperFactory, vcRef.length, undefined, [[targetRef.location.nativeElement]]);
       // 用 renderer2 在產生出來的元件上 加上 class
-      // this.renderer2.addClass(targetRef.location.nativeElement, this.sizeMap['small']);
       this.renderer2.addClass(wrapperRef.location.nativeElement, this.sizeMap['small']);
       // 記錄 component 唯一值
       wrapperRef.instance['uniqueKey'] = ++this.childUniqueKey;
