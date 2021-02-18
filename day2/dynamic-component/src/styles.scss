@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./theme";
+@import "~@nebular/theme/styles/globals";
+
+.nb-theme-dark nb-card {
+  border: none !important;
+  border-radius: 15px !important;
+  box-shadow: 9px 9px 20px #0d101d, -9px -9px 20px #202747 !important;
+  background-color: #151a30 !important;
+}
+
+.nb-theme-dark .toggle {
+  box-shadow: 5px 5px 10px #0d101d, -5px -5px 10px #202747 !important;
+}
+
+@include nb-install() {
+  @include nb-theme-global();
+} ;

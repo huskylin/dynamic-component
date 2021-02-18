@@ -1,0 +1,91 @@
+// 右側元件選單
+$sidebar-width: 30rem;
+.rightSidebar,
+.rightSidebar.expanded {
+  display: block;
+  position: absolute;
+  right: -2.25rem;
+  width: $sidebar-width;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+}
+::ng-deep .rightSidebar > .main-container {
+  height: 100vh !important;
+  top: 0rem !important;
+  width: $sidebar-width !important;
+}
+::ng-deep .rightSidebar * .scrollable {
+  overflow-y: visible !important;
+  overflow-x: visible !important;
+}
+.toggleBtn {
+  position: absolute;
+  top: 30%;
+  left: -9px;
+  height: 50px;
+  width: 30px;
+  border-radius: 90px 0 0 90px;
+  padding-top: 7px;
+  padding-left: 4px;
+  line-height: 12px;
+  font-size: 12px;
+  margin: 0;
+  background: #151a30;
+  box-shadow: -9px -9px 20px #1d2443;
+  text-decoration: none;
+  text-align: center;
+  border-right: none;
+  box-sizing: border-box;
+  overflow: visible;
+
+  nb-icon {
+    font-size: 3em;
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+    transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+  }
+  nb-icon.rotate {
+    transform: rotate(-180deg);
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+    transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+  }
+}
+
+// row 區塊大小
+%border {
+  border: #ffffff;
+  border-width: 2px;
+  border-style: solid;
+}
+.flex-fill-height {
+  flex-grow: 0.5;
+  flex-shrink: 0.5;
+  flex-basis: 10%;
+}
+.small-height {
+  height: 300px;
+}
+
+// 上方模式調整
+.setting {
+  position: relative;
+  float: right;
+  nb-toggle {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+// block 區塊大小
+ngx-add-button {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

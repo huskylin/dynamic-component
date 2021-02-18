@@ -1,0 +1,66 @@
+// @import "~@nebular/theme/styles/themes";
+
+// Variables
+$hoverBgColor: rgba(74, 208, 225, 0.24);
+$hoverBgColor2: rgba(74, 208, 225, 0.48);
+
+@keyframes shadowFadeIn {
+  0% {
+    box-shadow: inset 11px 11px 23px #0c0e1a, inset -11px -11px 23px #1e2646;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    box-shadow: 11px 11px 23px #0c0e1a, -11px -11px 23px #1e2646;
+  }
+}
+
+@keyframes shadowFadeOut {
+  0% {
+    box-shadow: 11px 11px 23px #0c0e1a, -11px -11px 23px #1e2646;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    box-shadow: inset 11px 11px 23px #0c0e1a, inset -11px -11px 23px #1e2646;
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block {
+  height: 100%;
+  box-shadow: inset 11px 11px 23px #0c0e1a, inset -11px -11px 23px #1e2646;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  animation: shadowFadeOut 0.1s;
+  &:hover {
+    color: rgba(74, 208, 225, 1);
+    animation: shadowFadeIn 0.1s;
+    box-shadow: 11px 11px 23px #0c0e1a, -11px -11px 23px #1e2646;
+    .font-size {
+      font-size: 4em;
+    }
+  }
+  &:focus .multi-button,
+  .multi-button:focus-within {
+    opacity: 1;
+    width: 10rem;
+    height: 10rem;
+  }
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+.font-size {
+  transition: 0.3s all ease-in-out;
+  font-size: 2em;
+}
