@@ -10,6 +10,7 @@ import { PieChart } from './pie-chart';
 export class PieChartComponent implements OnInit, OnChanges {
 
   @Input() data: PieChart = {
+    year: 2018,
     legend: [],
     data: []
   };
@@ -42,6 +43,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     }
   ];
   pieChartOption: any = {};
+  selectedTime: any;
   getSeriesList(data: number[], legend: string[]) {
     const seriesList = [];
     data.forEach((d, index) => {
@@ -64,7 +66,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   drawChart(legend: string[], total: number, list: any[]) {
     this.pieChartOption = {
       tooltip: {
-        show: false
+        show: true
       },
       legend: {
         orient: 'vertical',
@@ -74,7 +76,7 @@ export class PieChartComponent implements OnInit, OnChanges {
         top: '5%',
         textStyle: {
           color: colors['color-gray-200'],
-          fontSize: 16
+          fontSize: 12
         }
       },
       series: [{
@@ -92,9 +94,7 @@ export class PieChartComponent implements OnInit, OnChanges {
               position: 'outside',
               formatter: (params) => {
                 const percent = params.percent;
-                const value = params.value;
-                const name = params.name;
-                return `${name}\n${value}\n${percent}%`;
+                return `${percent}%`;
               },
               textStyle: {
                 align: 'center',
@@ -102,12 +102,14 @@ export class PieChartComponent implements OnInit, OnChanges {
                 fontSize: 16,
                 fontWeight: '100',
                 lineHeight: 30,
-                color : colors['color-gray-100']
-              }
+                color: colors['color-gray-100']
+              },
+              alignTo: 'edge',
+              margin: 30
             },
             labelLine: {
-              length: 20,
-              length2: 50,
+              length: 10,
+              length2: 10,
               show: true,
               color: '#00ffff'
             }
@@ -123,17 +125,31 @@ export class PieChartComponent implements OnInit, OnChanges {
       ]
     };
   }
-  ngOnInit() {
-    this.data = {
-      legend: ['邪惡勢力', '還是邪惡勢力'],
-      data: [333, 666]
-    };
+  selectedChange() {
+    let newData = {
+      legend: [],
+      data: [],
+    }
+    if (this.selectedTime === '0') {
+      newData = {
+        legend: ['已註冊', '未註冊'],
+        data: [this.data.data[0] - 10, 100 - (this.data.data[0]-10)]
+      }
+    } else if (this.selectedTime === '1') {
+      newData = {
+        legend: ['已註冊', '未註冊'],
+        data: [this.data.data[0] + 10, 100 - (this.data.data[0]+10)]
+      }
+    }
     let total = 0;
-    this.data.data.forEach(value => { total += value });
-    const legend = this.data.legend;
-    const data = this.data.data;
+    newData.data.forEach(value => { total += value });
+    const legend = newData.legend;
+    const data = newData.data;
     const seriesList = this.getSeriesList(data, legend);
-    this.drawChart(legend, total, seriesList);
+    this.drawChart(legend, total, seriesList)
+    console.log(this.data);
+  }
+  ngOnInit() {
   }
   ngOnChanges(changes: any): void {
     if (changes.data && changes.data.currentValue) {

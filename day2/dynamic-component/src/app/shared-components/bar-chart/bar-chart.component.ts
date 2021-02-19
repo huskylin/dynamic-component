@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { colors } from '../colors';
 import { graphic } from 'echarts/dist/echarts';
+import { BarChart } from './bar-chart';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,14 +10,15 @@ import { graphic } from 'echarts/dist/echarts';
 })
 export class BarChartComponent implements OnInit, OnChanges {
 
-  @Input() data: any = {
+  @Input() data: BarChart = {
+    year: 2018,
     xType: 'category',
     yType: 'value',
     xAxis: [],
     yAxis: [],
   };
   constructor() { }
-
+  selectedTime: any;
   barChartOption: any = {
     tooltip: {
       trigger: 'axis',
@@ -172,14 +174,26 @@ export class BarChartComponent implements OnInit, OnChanges {
     }];
     this.barChartUpdates = { ...this.barChartUpdates };
   }
-  ngOnInit() {
-    this.data = {
-      xType: 'category',
-      yType: 'value',
-      xAxis: [9, 10, 8, 5, 6, 6],
-      yAxis: [6, 7, 3, 9, 6, 4],
+  selectedChange() {
+    let newData = {}
+    if (this.selectedTime === '0') {
+      newData = {
+        xType: 'category',
+        yType: 'value',
+        xAxis: this.data.xAxis.slice(0, 6),
+        yAxis: this.data.yAxis.slice(0, 6),
+      }
+    } else if (this.selectedTime === '1') {
+      newData = {
+        xType: 'category',
+        yType: 'value',
+        xAxis: this.data.xAxis.slice(6, 12),
+        yAxis: this.data.yAxis.slice(6, 12),
+      }
     }
-    this.drawChart(this.data);
+    this.drawChart(newData)
+  }
+  ngOnInit() {
   }
   ngOnChanges(changes: any): void {
     if (changes.data && changes.data.currentValue) {

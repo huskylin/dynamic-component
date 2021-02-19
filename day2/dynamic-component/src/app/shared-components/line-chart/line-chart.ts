@@ -1,4 +1,5 @@
 export interface LineChart {
+    year: number;
     xAxis: string[] | number[];
     lines: Line[];
 }

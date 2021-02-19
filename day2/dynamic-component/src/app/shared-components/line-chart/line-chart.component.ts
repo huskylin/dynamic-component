@@ -10,11 +10,12 @@ import { LineChart } from './line-chart';
 export class LineChartComponent implements OnInit, OnChanges {
 
   @Input() data: LineChart = {
+    year: 2018,
     xAxis: [],
     lines: [],
   };
   constructor() { }
-
+  selectedTime: any;
   lineChartOption: any = {
     legend: {
       textStyle: {
@@ -50,8 +51,8 @@ export class LineChartComponent implements OnInit, OnChanges {
     grid: {
       top: '3%',
       bottom: '20%',
-      left: '1%',
-      right: '1%',
+      left: '3%',
+      right: '3%',
     },
     xAxis: [{
       type: 'category',
@@ -183,8 +184,8 @@ export class LineChartComponent implements OnInit, OnChanges {
       grid: {
         top: '3%',
         bottom: '20%',
-        left: '1%',
-        right: '1%',
+        left: '3%',
+        right: '3%',
       },
       xAxis: [{
         type: 'category',
@@ -236,17 +237,29 @@ export class LineChartComponent implements OnInit, OnChanges {
       series: series
     };
   }
-  ngOnInit() {
-    this.data = {
-      xAxis: Array.from([...Array(24).keys()]),
-      lines: [
-        { 'name': '使用率', 'values': [9, 10, 8, 5, 6, 6, 4, 9, 2, 3, 2, 3, 2, 3, 8, 9, 2, 3, 2, 3, 2, 3, 8, 14] }
-      ],
+  selectedChange() {
+    let newData = {}
+    if (this.selectedTime === '0') {
+      newData = {
+        xAxis: this.data.xAxis.slice(0, 6),
+        lines: [
+          { 'name': '使用率', 'values': this.data.lines[0].values.slice(0, 6) }
+        ],
+      }
+    } else if (this.selectedTime === '1') {
+      newData = {
+        xAxis: this.data.xAxis.slice(6, 12),
+        lines: [
+          { 'name': '使用率', 'values': this.data.lines[0].values.slice(6, 12) }
+        ],
+      }
     }
-    this.drawChart(this.data);
+    this.drawChart(newData)
+    console.log(this.data);
+  }
+  ngOnInit() {
   }
   ngOnChanges(changes: any): void {
-    console.log(changes);
     if (changes.data && changes.data.currentValue) {
       this.data = changes.data.currentValue;
       this.drawChart(this.data);

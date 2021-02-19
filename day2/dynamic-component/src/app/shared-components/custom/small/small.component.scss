@@ -1,6 +1,9 @@
-.close {
+.container {
   position: relative;
-  top: 10px;
+}
+.close {
+  position: absolute !important;
+  top: -10px;
   right: -15px;
   padding: 2px !important;
   // border-color: #222b45 !important;

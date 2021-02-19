@@ -20,5 +20,10 @@
     <nb-icon icon="chevron-right-outline" [ngClass]="{'rotate': !sideState}"></nb-icon>
   </a>
   <app-component-selector (choosed)="createComponent($event, true)">
+    <nb-select class="right" placeholder="選擇資料年分" [(selected)]="selectedYear" (selectedChange)="selectedChange()">
+      <nb-option value=2018>2018</nb-option>
+      <nb-option value=2019>2019</nb-option>
+      <nb-option value=2020>2020</nb-option>
+    </nb-select>
   </app-component-selector>
 </nb-sidebar>

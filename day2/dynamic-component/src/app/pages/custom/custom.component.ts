@@ -25,6 +25,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
   childUniqueKey: number = 0;
   componentsIndex: Array<number> = [];
   componentsReferences = Array<ComponentRef<any>>();
+  selectedYear = 2018;
   wrappers = {
     small: SmallComponent,
   };
@@ -54,6 +55,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
       const componentFactory = this.cfr.resolveComponentFactory(targetComponent);
       // 先產生目標圖表元件
       const targetRef = vcRef.createComponent(componentFactory);
+      // 準備元件的input資料
+      this.customService.updateInputData(component, targetRef, this.selectedYear);
       // 在參照位置產生外框元件，並且透過 ng-content，將目標圖表元件放進來
       const wrapperRef = vcRef.createComponent(wrapperFactory, vcRef.length, undefined, [[targetRef.location.nativeElement]]);
       // 用 renderer2 在產生出來的元件上 加上 class
@@ -89,6 +92,10 @@ export class CustomComponent implements OnInit, AfterViewInit {
     this.removeable = event;
     this.customService.refreshRemoveMode(this.removeable);
   }
+  // 選擇資料年分
+  selectedChange() {
+
+  }
   async loadComponents() {
     // 讀取使用者儲存了頁面有哪些元件，並且一一創造出來
     const components = await this.customService.getComponentsArray();
@@ -96,6 +103,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
       .map(c => this.utilsService.getAllComponents().find(e => e.name === c))
       .forEach(c => this.createComponent(c, false));
   }
+
   // 側選單相關
   sideBarExpand() {
     // 收合側元件選單
