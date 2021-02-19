@@ -258,6 +258,7 @@ export class LineChartComponent implements OnInit, OnChanges {
     console.log(this.data);
   }
   ngOnInit() {
+    console.log('LineChart OnInit');
   }
   ngOnChanges(changes: any): void {
     if (changes.data && changes.data.currentValue) {

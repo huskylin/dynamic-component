@@ -150,6 +150,7 @@ export class PieChartComponent implements OnInit, OnChanges {
     console.log(this.data);
   }
   ngOnInit() {
+    console.log('PieChart OnInit');
   }
   ngOnChanges(changes: any): void {
     if (changes.data && changes.data.currentValue) {
